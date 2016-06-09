@@ -1,1 +1,51 @@
 <h1> Home page </h1>
+
+<br>
+
+<h2>List Of Rubrics</h2>
+
+<style type="text/css">
+  TABLE {
+    width: 1000px; /* Ширина таблицы */
+  }
+
+  TD, TH {
+    padding: 3px; /* Поля вокруг содержимого ячеек */
+    border: 1px solid black;
+  }
+
+  TH {
+    text-align: left; /* Выравнивание по левому краю */
+    border-bottom: 1px solid #000; /* Линия снизу */
+  }
+
+</style>
+
+<% if @rubrics.empty? %>
+    <b>There are no rubrics. You can try to add any one.</b>
+<% else %>
+    <table class="rubrics" cellspacing="0">
+
+      <tr>
+        <th>rubrics id</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Picture</th>
+      </tr>
+
+      <% @rubrics.each do |i| %>
+
+          <tr data-item_id="<%= i.id %>">
+            <td><%= i.id %></td>
+            <td><%= link_to i.rubric_name, root_path %> </td>
+            <td><%= i.rubric_description %></td>
+            <td><%= image_tag i.rubric_avatar.url.to_s, width: '50', height: '50' if i.rubric_avatar %> </td>
+          </tr>
+      <% end %>
+    </table>
+
+<% end %>
+
+<br/>
+
+
